@@ -40,7 +40,6 @@ const Post = ({
   },
 }) => {
   const { user } = useContext(AuthContext);
-  const [displayComment, setDisplayComment] = useState(false);
   const history = useHistory();
   const { loading, data } = useQuery(GET_USER_QUERY, {
     variables: { username },
@@ -48,11 +47,7 @@ const Post = ({
 
   if (loading) return null;
   return (
-    <PostContainer
-      displayComment={displayComment}
-      comments={commentCount}
-      imageId={imageId}
-    >
+    <PostContainer comments={commentCount} imageId={imageId}>
       <div>
         <UserBox>
           <div
