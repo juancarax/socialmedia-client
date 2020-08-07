@@ -8,10 +8,6 @@ import {
 } from "./form-input.styles";
 
 const FormInput = ({ handleChange, label, error, ...props }) => {
-  {
-    console.log(props);
-  }
-
   return (
     <GroupContainer>
       <FormInputContainer onChange={handleChange} error={error} {...props} />

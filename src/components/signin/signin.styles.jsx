@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { SpinnerStyles } from "../loading/loading.styles";
 
 export const SignInContainer = styled.div`
   display: flex;

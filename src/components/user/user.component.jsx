@@ -3,7 +3,6 @@ import {
   UserComponentContainer,
   UserDiv,
   UserBox,
-  UserImage,
   Username,
   PostDate,
   ChangeImageButton,
@@ -31,12 +30,8 @@ const UserProfile = ({ match }) => {
     variables: { username },
   });
 
-  const [
-    uploadImage,
-    { loading: mutationLoading, error: errorMutation },
-  ] = useMutation(UPDATE_USER_IMAGE, {
+  const [uploadImage] = useMutation(UPDATE_USER_IMAGE, {
     update(cache, { data: { updateImage } }) {
-      const { getUser } = cache.readQuery({ query: GET_USER_QUERY });
       cache.readQuery({
         query: GET_USER_QUERY,
         data: updateImage,
@@ -57,7 +52,6 @@ const UserProfile = ({ match }) => {
       "https://api.cloudinary.com/v1_1/dop6uan6j/upload",
       formData
     );
-    console.log(response);
     await uploadImage({
       variables: { newImageId: response.data.public_id },
     });

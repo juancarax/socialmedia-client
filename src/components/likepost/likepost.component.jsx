@@ -5,7 +5,6 @@ import {
   FilledHeart,
   NormalHeart,
   LikeContainer,
-  RandomDiv,
 } from "./likepost.styles";
 import { Link } from "react-router-dom";
 
@@ -18,9 +17,9 @@ const LikeButton = ({ user, post: { id, likeCount, likes } }) => {
     if (user && likes.find((like) => like.username === user.username)) {
       setLiked(true);
     } else setLiked(false);
-  }, [likes]);
+  }, [likes, user]);
 
-  const [likePost, { error }] = useMutation(LIKE_POST_MUTATION, {
+  const [likePost] = useMutation(LIKE_POST_MUTATION, {
     variables: { postId: id },
     update(result) {},
     onError(err) {

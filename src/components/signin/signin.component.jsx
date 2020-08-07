@@ -6,7 +6,6 @@ import { AuthContext } from "../../context/auth";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 import { SignInContainer, SignInTitle, Form } from "./signin.styles";
-import Loading from "../loading/loading.component";
 const SignInComponent = () => {
   const context = useContext(AuthContext);
 
@@ -19,7 +18,7 @@ const SignInComponent = () => {
   const { username, email, password, confirmPassword } = state;
   let history = useHistory();
 
-  const [loginUser, { loading }] = useMutation(LOG_IN_USER, {
+  const [loginUser] = useMutation(LOG_IN_USER, {
     update(_, result) {
       console.log(result);
       context.login(result.data.login);

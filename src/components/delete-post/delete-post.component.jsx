@@ -1,9 +1,6 @@
 import React from "react";
-import { DeleteIcon } from "./delete-post.styles";
 import CustomButton from "../custom-button/custom-button.component";
-import { GET_POSTS } from "../../gql/querys";
 import { useHistory } from "react-router-dom";
-import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 
 import Loading from "../loading/loading.component";

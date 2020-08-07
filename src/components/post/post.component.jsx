@@ -1,28 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   PostContainer,
-  PostImageContainer,
-  PostImage,
-  PostBody,
   PostText,
   UserInfo,
-  SpanLike,
   SpanComment,
   UserBox,
   LikeCommentsContainer,
   CommentIcon,
-  UserImage,
   DeleteIcon,
   PostOptionsContainer,
-  PostTextContainer,
   Username,
   PostDate,
 } from "./post.styles";
 import CustomButton from "../custom-button/custom-button.component";
 import moment from "moment";
 import { AuthContext } from "../../context/auth";
-import MakeComment from "../make-comment/make-comment.component";
-import { Image, Transformation } from "cloudinary-react";
+import { Image } from "cloudinary-react";
 import {
   GET_USER_QUERY,
   GET_POSTS_TO_UPDATE_CACHE,
@@ -49,13 +42,9 @@ const Post = ({
   const { user } = useContext(AuthContext);
   const [displayComment, setDisplayComment] = useState(false);
   const history = useHistory();
-  const { loading, error, data } = useQuery(GET_USER_QUERY, {
+  const { loading, data } = useQuery(GET_USER_QUERY, {
     variables: { username },
   });
-
-  const toggleComment = () => {
-    setDisplayComment(!displayComment);
-  };
 
   if (loading) return null;
   return (

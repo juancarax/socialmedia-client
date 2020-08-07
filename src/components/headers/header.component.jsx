@@ -9,7 +9,7 @@ import {
 } from "./header.styles";
 import CustomButton from "../custom-button/custom-button.component";
 import { Link, useHistory } from "react-router-dom";
-import { useQuery, useLazyQuery } from "@apollo/react-hooks";
+import { useLazyQuery } from "@apollo/react-hooks";
 import Loading from "../loading/loading.component";
 import { GET_USER_QUERY } from "../../gql/querys";
 import { Image } from "cloudinary-react";
@@ -18,12 +18,12 @@ import { AuthContext } from "../../context/auth";
 const Header = () => {
   const history = useHistory();
   const { user, logout } = useContext(AuthContext);
-  const [getUserInfo, { data, loading, error }] = useLazyQuery(GET_USER_QUERY);
+  const [getUserInfo, { data, loading }] = useLazyQuery(GET_USER_QUERY);
   useEffect(() => {
     if (user) {
       getUserInfo({ variables: { username: user.username } });
     }
-  }, [user]);
+  }, [user, getUserInfo]);
 
   const goToUser = () => {
     history.push(`/users/${user.username}`);

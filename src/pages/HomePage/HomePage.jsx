@@ -1,23 +1,16 @@
-import React from 'react';
-import { HomePageContainer, BlueBackGround } from './HomePage.styles'
-import Post from '../../components/post/post.component'
-import Directory from '../../components/directory/directory.component'
-import MakePost from '../../components/makepost/makepost.component'
+import React from "react";
+import { HomePageContainer, BlueBackGround } from "./HomePage.styles";
+import Directory from "../../components/directory/directory.component";
+import MakePost from "../../components/makepost/makepost.component";
 const HomePage = () => {
-
-    return(
-
-        
+  return (
     <HomePageContainer>
-     <BlueBackGround>
-       <MakePost />
+      <BlueBackGround>
+        <MakePost />
       </BlueBackGround>
       <Directory />
-    </HomePageContainer>)
-      
-}
-
+    </HomePageContainer>
+  );
+};
 
 export default HomePage;
-
-

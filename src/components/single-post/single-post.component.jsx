@@ -14,9 +14,7 @@ import {
   SpanComment,
   DeleteIcon,
 } from "./single-post.styles.jsx";
-import axios from "axios";
 import { useQuery } from "@apollo/react-hooks";
-import gql from "graphql-tag";
 import {
   GET_USER_QUERY,
   GET_POSTS_TO_UPDATE_CACHE,
@@ -27,7 +25,6 @@ import moment from "moment";
 import { Image } from "cloudinary-react";
 
 import CommentsDirectory from "../comments-directory/comments-directory.component";
-import CustomButton from "../custom-button/custom-button.component";
 import LikeButton from "../likepost/likepost.component";
 import DeletePostButton from "../delete-post/delete-post.component";
 import MakeComment from "../make-comment/make-comment.component";
@@ -38,20 +35,17 @@ const SinglePost = ({ match }) => {
 
   const postId = match.params.postId;
 
-  const { loading: loadingPost, error: errorPost, data: getPost } = useQuery(
+  const { loading: loadingPost, data: getPost } = useQuery(
     GET_SINGLE_POST_QUERY,
     {
       variables: { postId },
     }
   );
 
-  const { loading: loadingUser, error: errorUser, data: getUser } = useQuery(
-    GET_USER_QUERY,
-    {
-      skip: !getPost,
-      variables: { username: getPost && getPost.getPost.username },
-    }
-  );
+  const { loading: loadingUser, data: getUser } = useQuery(GET_USER_QUERY, {
+    skip: !getPost,
+    variables: { username: getPost && getPost.getPost.username },
+  });
 
   if (loadingPost || loadingUser)
     return (

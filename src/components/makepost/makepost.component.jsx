@@ -64,23 +64,17 @@ const MakePost = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let responseImage = null;
 
     const formData = new FormData(); //Upload image to cloudinary
     formData.append("file", imageUpload);
     formData.append("upload_preset", "v0f73ult");
 
-    const responseToken = await axios
-      .post("https://api.cloudinary.com/v1_1/dop6uan6j/upload", formData)
-      .then((response) => {
-        responseImage = response.data.public_id;
-        console.log(responseImage);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    createPostMutation({
-      variables: { body, imageId: responseImage },
+    const response = await axios.post(
+      "https://api.cloudinary.com/v1_1/dop6uan6j/upload",
+      formData
+    );
+    await createPostMutation({
+      variables: { body, imageId: response.data.public_id },
     });
 
     if (!user) {

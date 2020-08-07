@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./components/headers/header.component";
 import client from "./apollo-provider";
 import { GlobalStyle } from "./global.styles";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { ApolloProvider } from "@apollo/react-hooks";
 import AuthRoute from "./utils/AuthRouter";
 

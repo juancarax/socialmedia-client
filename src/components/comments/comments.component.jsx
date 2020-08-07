@@ -2,7 +2,6 @@ import React from "react";
 import {
   CommentContainer,
   UserComment,
-  UserImage,
   UserBox,
   BodyContainer,
   BodyComment,

@@ -50,26 +50,6 @@ const ButtonStyles = css`
 }
 `;
 
-const SignInButtonStyles = css`
- background-color: #f18579;
- color: white;
- border-radius: 10rem;
- border: none;
- cursor: pointer;
- padding: 1.6rem 3.5rem;
- font-size: 1.5rem;
- font-weight: 600;
- 
- &:focus {
-  outline: none;
-}
-  &:hover {
-    background-color: #fc6c54;
-    box-shadow: 0 1rem 2rem rgba(black, .2);
-  }
-}
-`;
-
 export const DeleteButton = css`
   background-color: white;
   color: #e53935;
