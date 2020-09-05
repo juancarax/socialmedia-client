@@ -56,30 +56,32 @@ const MakePost = () => {
         });
         setState({ body: "" });
       },
-      onError(err) {
-        console.log(err.graphQLErrors[0].extensions.exception.errors);
-      },
     }
   );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const formData = new FormData(); //Upload image to cloudinary
-    formData.append("file", imageUpload);
-    formData.append("upload_preset", "v0f73ult");
-
-    const response = await axios.post(
-      "https://api.cloudinary.com/v1_1/dop6uan6j/upload",
-      formData
-    );
-    await createPostMutation({
-      variables: { body, imageId: response.data.public_id },
-    });
-
     if (!user) {
       setPopUpToggle(true);
     }
+    let response = null;
+    const formData = new FormData();
+    if (imageUpload) {
+      //Upload image to cloudinary
+      formData.append("file", imageUpload);
+      formData.append("upload_preset", "v0f73ult");
+
+      response = await axios.post(
+        "https://api.cloudinary.com/v1_1/dop6uan6j/upload",
+        formData
+      );
+    }
+    await createPostMutation({
+      variables: {
+        body,
+        imageId: response?.data?.public_id ?? null,
+      },
+    });
   };
   if (loading)
     return (
